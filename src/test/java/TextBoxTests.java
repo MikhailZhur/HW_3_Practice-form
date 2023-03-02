@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -23,7 +24,7 @@ public class TextBoxTests {
         $("#firstName").setValue("Mikhail");
         $("#lastName").setValue("Zhuravlev");
         $("#userEmail").setValue("miha99_66@mail.ru");
-        $("[for=gender-radio-1]").click();
+        $(byText("Male")).click();
         $("#userNumber").setValue("9126298333");
 
         $("#dateOfBirthInput").click();
@@ -33,19 +34,20 @@ public class TextBoxTests {
         $("[value='1988']").click();
         $("[aria-label='Choose Friday, May 27th, 1988']").click();
 
-        $("#subjectsInput").setValue("engl").pressEnter();
-        $("[for='hobbies-checkbox-3']").click();
-        $("[for='hobbies-checkbox-2']").click();
+        $("#subjectsInput").setValue("Commerce").pressEnter();
+        $(byText("Music")).click();
+        $(byText("Reading")).click();
+        $(byText("Sports")).click();
 
         $("input[type='file']").uploadFile(new File("src/test/resources/CV.jpg"));
 
         $("#currentAddress").setValue("Kras");
 
         $("#state").click();
-        $("#react-select-3-option-0").click();
+        $(byText("NCR")).click();
 
         $("#city").click();
-        $("#react-select-4-option-0").click();
+        $(byText("Delhi")).click();
 
         $("#submit").click();
 
@@ -54,7 +56,7 @@ public class TextBoxTests {
                 text("Male"),
                 text("9126298333"),
                 text("27 May,1988"),
-                text("English"),
+                text("Commerce"),
                 text("Music"),
                 text("CV.jpg"),
                 text("Kras"),
